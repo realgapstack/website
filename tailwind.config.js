@@ -1,78 +1,71 @@
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  safelist: ["text-purple", "text-primary", "text-purple-primary"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      animation: {
-        'scroll': 'scroll 30s linear infinite',
-      },
-      keyframes: {
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-100% - 2rem))' },
-        },
-      },
-      fontFamily: {
-        sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
-      },
-      fontSize: {
-        '13': '13px',
-      },
       colors: {
         // Brand Colors
         purple: {
-          primary: '#7C3AED',
-          DEFAULT: '#7C3AED',
+          DEFAULT: "#7C3AED",
+          light: "#9F67FF",
+          dark: "#6D28D9",
         },
         blue: {
-          primary: '#232A4D',
-          brand: '#339AF0',
+          DEFAULT: "#232A4D",
+          light: "#2D3A6D",
+          dark: "#1A2038",
         },
+        "blue-brand": "#339AF0",
         // Grey Colors
         grey: {
-          dark: '#4B4B57',
-          light: '#7B7B8A',
-          DEFAULT: '#8A8A8A',
-          lighter: '#F3F3F3',
-          border: '#E5E5E5',
-          placeholder: '#A3A3B3',
+          DEFAULT: "#8A8A8A",
+          dark: "#4B4B57",
+          light: "#7B7B8A",
+          lighter: "#F3F3F3",
+          border: "#E5E5E5",
+          placeholder: "#A3A3B3",
         },
         // Background Colors
         background: {
-          light: '#F7F7F9',
-          white: '#FFFFFF',
-          DEFAULT: '#F7F7F9',
+          DEFAULT: "#F7F7F9",
+          light: "#F7F7F9",
+          white: "#FFFFFF",
         },
         // Status Colors
         status: {
-          red: '#E45C4C',
-          green: '#4CCB6D',
-          orange: '#F6A84A',
+          red: "#E45C4C",
+          green: "#4CCB6D",
+          orange: "#F6A84A",
         },
         // Semantic Colors
         primary: {
-          DEFAULT: '#7C3AED',
-          dark: '#232A4D',
+          DEFAULT: "#7C3AED",
+          dark: "#232A4D",
         },
-        secondary: {
-          DEFAULT: '#339AF0', // Primary Blue
+        secondary: "#339AF0",
+        error: "#E45C4C",
+        success: "#4CCB6D",
+        warning: "#F6A84A",
+      },
+      animation: {
+        scroll: "scroll 30s linear infinite",
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-100% - 2rem))" },
         },
-        error: {
-          DEFAULT: '#E45C4C', // Red
-        },
-        success: {
-          DEFAULT: '#4CCB6D', // Green
-        },
-        warning: {
-          DEFAULT: '#F6A84A', // Orange
-        },
+      },
+      fontFamily: {
+        sans: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
+      },
+      fontSize: {
+        13: "13px",
       },
     },
   },
   plugins: [],
-}
+};

@@ -94,7 +94,7 @@ const GlobalPayments = () => {
 
       <Section className="h-12" />
 
-      {/* <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
+      {/* <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
         <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
           <img
             src="/images/image_two.png"
@@ -106,7 +106,7 @@ const GlobalPayments = () => {
 
       <Section className="">
         <div className="container grid items-center grid-cols-12 px-4 mx-auto align-center">
-          <div className="col-span-3 py-12 border-r border-gray-300 border-dotted">
+          <div className="col-span-3 py-12 border-r border-grey border-dotted">
             <p className="text-center text-muted-foreground ">
               Powering global payments for:
             </p>
@@ -148,7 +148,7 @@ const GlobalPayments = () => {
 
       <PaymentMethods />
 
-      <section className="pt-8 md:pt-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300 bg-background">
+      <section className="pt-8 md:pt-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey bg-background">
         <div className=" md:px-0">
           <div className="grid items-end gap-8 lg:grid-cols-12 md:gap-10 ">
             <div className="col-span-7">
@@ -175,9 +175,9 @@ const GlobalPayments = () => {
         </div>
       </section>
 
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted" />
+      <div className="relative w-full h-px border-t border-grey border-dotted" />
 
-      <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
+      <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
         <div className=" md:px-0">
           <div className="">
             <h2 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl md:mb-8">

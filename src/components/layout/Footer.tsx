@@ -11,14 +11,14 @@ const FooterLocationItem = ({
     <h4 className="mb-4 text-sm font-semibold text-gray-900 md:text-base">
       {location}
     </h4>
-    <p className="text-sm text-purple-primary">{address}</p>
+    <p className="text-sm text-purple">{address}</p>
   </div>
 );
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50">
-      <div className="max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 pt-12 pb-7">
+    <footer className="bg-background">
+      <div className="max-w-[979px] mx-auto border-l border-r border-dotted border-grey pt-12 pb-7">
         <div className="flex justify-between pb-10">
           <div className="col-span-2 md:col-span-1">
             <Link to="/">
@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <a
               href="mailto:sales@gapstack.com"
-              className="text-sm text-purple-primary hover:underline"
+              className="text-sm text-purple hover:underline"
             >
               sales@gapstack.com
             </a>

@@ -31,29 +31,25 @@ const paymentMethods: PaymentMethod[] = [
 
 export default function PaymentMethods() {
   return (
-    <Section className="">
-      <div className="md:px-0">
-        <div className="">
-          <h2 className="mb-8 text-2xl font-bold text-center text-gray-900 md:text-3xl md:mb-12">
-            Payment Methods Suited To Your Customers
-          </h2>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
-            {paymentMethods.map((method, index) => (
-              <div key={index} className="p-[5px] bg-background rounded-[10px]">
-                <img
-                  src={method.image}
-                  alt={method.alt}
-                  // width={223}
-                  // height={100}
-                  className="w-full h-auto"
-                />
-                <h3 className="text-sm font-semibold md:text-base">
-                  {method.title}
-                </h3>
-              </div>
-            ))}
+    <Section className="pt-12 pb-11">
+      <h2 className="mb-8 text-2xl font-bold text-center text-gray-900 md:text-3xl md:mb-12">
+        Payment Methods Suited To Your Customers
+      </h2>
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
+        {paymentMethods.map((method, index) => (
+          <div key={index} className="p-[5px] bg-background rounded-[10px]">
+            <img
+              src={method.image}
+              alt={method.alt}
+              // width={223}
+              // height={100}
+              className="w-full h-auto"
+            />
+            <h3 className="text-sm font-semibold md:text-base">
+              {method.title}
+            </h3>
           </div>
-        </div>
+        ))}
       </div>
     </Section>
   );
