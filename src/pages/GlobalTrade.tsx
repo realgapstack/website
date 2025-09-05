@@ -4,6 +4,7 @@ import Button from "../components/Button";
 const GlobalTrade = () => {
   return (
     <div>
+<<<<<<< Updated upstream
       <Section className="text-center">
         <div className="">
           <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
@@ -17,6 +18,19 @@ const GlobalTrade = () => {
           <div className="flex flex-col justify-center gap-4 px-4 sm:flex-row sm:gap-6">
             <Button>Contact Sales</Button>
           </div>
+=======
+      <Section className="pt-10 text-center pb-7">
+        <h1 className="mb-4 text-2xl font-bold leading-tight md:text-5xl lg:text-5xl md:mb-6 text-balance">
+          The single Digital Trade Financing Platform
+        </h1>
+        <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+          At Gapstack, we digitize your buyer- supplier arrangements; unlock and
+          accelerate funding from your international and domestic value chain
+          while expanding your unique business relationships.
+        </p>
+        <div className="flex flex-col justify-center gap-4 px-4 sm:flex-row sm:gap-6">
+          <Button>Contact Sales</Button>
+>>>>>>> Stashed changes
         </div>
       </Section>
 
@@ -45,6 +59,7 @@ const GlobalTrade = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
       <Section className="">
         <div className="">
           <div className="relative">
@@ -100,6 +115,15 @@ const GlobalTrade = () => {
                 </div> */}
           </div>
         </div>
+=======
+      <Section className="relative py-10 bg-background">
+        <img
+          src="/images/bid_bonds.png"
+          alt="Placeholder"
+          className="h-[27rem] w-auto mx-auto"
+        />
+        <div className="absolute bottom-10 h-24 w-full bg-gradient-to-b from-transparent to-[#F4F8F9]" />
+>>>>>>> Stashed changes
       </Section>
 
       <div className="relative w-full h-px border-t border-grey border-dotted">
