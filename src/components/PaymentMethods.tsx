@@ -1,3 +1,5 @@
+import Section from "./Section";
+
 interface PaymentMethod {
   image: string;
   alt: string;
@@ -29,13 +31,13 @@ const paymentMethods: PaymentMethod[] = [
 
 export default function PaymentMethods() {
   return (
-    <section className="py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
+    <Section className="">
       <div className="md:px-0">
         <div className="">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8 md:mb-12">
+          <h2 className="mb-8 text-2xl font-bold text-center text-gray-900 md:text-3xl md:mb-12">
             Payment Methods Suited To Your Customers
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 md:gap-4">
             {paymentMethods.map((method, index) => (
               <div key={index} className="p-[5px] bg-background rounded-[10px]">
                 <img
@@ -45,7 +47,7 @@ export default function PaymentMethods() {
                   // height={100}
                   className="w-full h-auto"
                 />
-                <h3 className="font-semibold text-sm md:text-base">
+                <h3 className="text-sm font-semibold md:text-base">
                   {method.title}
                 </h3>
               </div>
@@ -53,6 +55,6 @@ export default function PaymentMethods() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

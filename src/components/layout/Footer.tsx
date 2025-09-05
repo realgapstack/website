@@ -17,8 +17,8 @@ const FooterLocationItem = ({
 
 export default function Footer() {
   return (
-    <footer className="py-8 bg-gray-50 md:py-12">
-      <div className="max-w-[979px] mx-auto">
+    <footer className="bg-gray-50">
+      <div className="max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 pt-12 pb-7">
         <div className="flex justify-between pb-10">
           <div className="col-span-2 md:col-span-1">
             <Link to="/">

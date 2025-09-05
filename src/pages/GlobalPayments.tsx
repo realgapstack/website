@@ -1,6 +1,8 @@
 import Button from "@/components/Button";
 import { ContactSalesSheet } from "@/components/ContactSalesSheet";
 import { useContactSales } from "@/hooks/useContactSales";
+// import { Section } from "lucide-react";
+import Section from "@/components/Section";
 import GapstackFeatures from "../components/GapstackFeatures";
 import PaymentMethods from "../components/PaymentMethods";
 
@@ -15,25 +17,23 @@ const GlobalPayments = () => {
   ];
   return (
     <div className="">
-      <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
-        <div className="">
-          <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
-            Building Trust And Driving Growth By Revolutionizing How Money Moves
-            Across Borders.
-          </h1>
-          <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
-            With Gapstack, you can create new revenue streams and build customer
-            loyalty by offering seamless, transparent multi-currency, multi
-            country solutions. Our platform ensure security and compliance every
-            step of the way.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:gap-6">
-            <Button onClick={openSheet}> Unlock Your Potential</Button>
-          </div>
+      <Section className="pt-10 pb-8 text-center">
+        <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
+          Building Trust And Driving Growth By Revolutionizing How Money Moves
+          Across Borders.
+        </h1>
+        <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+          With Gapstack, you can create new revenue streams and build customer
+          loyalty by offering seamless, transparent multi-currency, multi
+          country solutions. Our platform ensure security and compliance every
+          step of the way.
+        </p>
+        <div className="flex flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:gap-6">
+          <Button onClick={openSheet}> Unlock Your Potential</Button>
         </div>
-      </section>
+      </Section>
 
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted">
+      <div className="relative w-full">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
             <svg viewBox="0 0 12 12" className="w-full h-full">
@@ -58,17 +58,16 @@ const GlobalPayments = () => {
         </div>
       </div>
 
-      <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
-        <div className="relative rounded-2xl overflow-hidden bg-gray-100">
+      <Section wrapperClassName="">
+        <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
           <img
             src="/images/image_two.png"
             alt=""
-            className=" w-full h-48 md:h-96 object-cover"
+            className="object-cover w-full h-48 md:h-96"
           />
         </div>
-      </section>
-
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted">
+      </Section>
+      <div className="relative">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
             <svg viewBox="0 0 12 12" className="w-full h-full">
@@ -93,43 +92,49 @@ const GlobalPayments = () => {
         </div>
       </div>
 
-      <section className="max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
-        <div className="container mx-auto px-4 grid grid-cols-12 items-center align-center">
-          <div className="col-span-3 border-r border-gray-300 border-dotted py-12">
+      <Section className="h-12" />
+
+      {/* <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300">
+        <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
+          <img
+            src="/images/image_two.png"
+            alt=""
+            className="object-cover w-full h-48 md:h-96"
+          />
+        </div>
+      </section> */}
+
+      <Section className="">
+        <div className="container grid items-center grid-cols-12 px-4 mx-auto align-center">
+          <div className="col-span-3 py-12 border-r border-gray-300 border-dotted">
             <p className="text-center text-muted-foreground ">
               Powering global payments for:
             </p>
           </div>
 
-          <div className="relative w-full overflow-hidden col-span-9">
+          <div className="relative w-full col-span-9 overflow-hidden">
             <div className="relative flex">
-              {/* Left gradient fade */}
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-
-              {/* Right gradient fade */}
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
               {/* First set of logos */}
-              <div className="flex shrink-0 items-center justify-around min-w-full animate-scroll">
+              <div className="flex items-center justify-around min-w-full shrink-0 animate-scroll">
                 {logos.map((company, index) => (
                   <div key={index} className="mx-6">
                     <img
                       src={`/images/logos/${company.logo}.png`}
                       alt={company.name}
-                      className="h-11 object-contain hover:opacity-100 transition-opacity duration-300"
+                      className="object-contain transition-opacity duration-300 h-11 hover:opacity-100"
                     />
                   </div>
                 ))}
               </div>
 
               {/* Second set of logos for seamless looping */}
-              <div className="flex shrink-0 items-center justify-around min-w-full animate-scroll">
+              <div className="flex items-center justify-around min-w-full shrink-0 animate-scroll">
                 {logos.map((company, index) => (
                   <div key={`duplicate-${index}`} className="mx-6">
                     <img
                       src={`/images/logos/${company.logo}.png`}
                       alt={company.name}
-                      className="h-11 object-contain hover:opacity-100 transition-opacity duration-300"
+                      className="object-contain transition-opacity duration-300 h-11 hover:opacity-100"
                     />
                   </div>
                 ))}
@@ -137,17 +142,11 @@ const GlobalPayments = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted" />
+      </Section>
 
       <GapstackFeatures />
 
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted" />
-
       <PaymentMethods />
-
-      <div className="relative w-full h-px border-t border-gray-300 border-dotted" />
 
       <section className="pt-8 md:pt-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-gray-300 border-r-gray-300 bg-background">
         <div className=" md:px-0">
@@ -156,7 +155,7 @@ const GlobalPayments = () => {
               <img
                 src="/images/image_four.png"
                 alt=""
-                className="w-full object-cover rounded-tr-2xl h-60 md:h-80"
+                className="object-cover w-full rounded-tr-2xl h-60 md:h-80"
               />
             </div>
             <div className="col-span-4">
@@ -164,7 +163,7 @@ const GlobalPayments = () => {
                 Our Platform
               </h2>
 
-              <ul className=" text-gray-600 list-disc list-inside pb-5">
+              <ul className="pb-5 text-gray-600 list-disc list-inside ">
                 <li>Full suite of APIs the fits targeted audience</li>
                 <li> Highly flexible to adapt to business innovations</li>
                 <li>
