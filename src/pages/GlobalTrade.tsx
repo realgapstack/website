@@ -4,23 +4,21 @@ import Button from "../components/Button";
 const GlobalTrade = () => {
   return (
     <div>
-      <Section className="text-center">
-        <div className="">
-          <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
-            The single Digital Trade Financing Platform
-          </h1>
-          <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
-            At Gapstack, we digitize your buyer- supplier arrangements; unlock
-            and accelerate funding from your international and domestic value
-            chain while expanding your unique business relationships.
-          </p>
-          <div className="flex flex-col justify-center gap-4 px-4 sm:flex-row sm:gap-6">
-            <Button>Contact Sales</Button>
-          </div>
+      <Section className="pt-10 text-center pb-7">
+        <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
+          The single Digital Trade Financing Platform
+        </h1>
+        <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+          At Gapstack, we digitize your buyer- supplier arrangements; unlock and
+          accelerate funding from your international and domestic value chain
+          while expanding your unique business relationships.
+        </p>
+        <div className="flex flex-col justify-center gap-4 px-4 sm:flex-row sm:gap-6">
+          <Button>Contact Sales</Button>
         </div>
       </Section>
 
-      <div className="relative w-full h-px border-t border-grey border-dotted">
+      <div className="relative w-full h-px border-t border-dotted border-grey">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
             <svg viewBox="0 0 12 12" className="w-full h-full">
@@ -45,64 +43,16 @@ const GlobalTrade = () => {
         </div>
       </div>
 
-      <Section className="">
-        <div className="">
-          <div className="relative">
-            <div className="w-full mx-auto">
-              <img
-                src="/images/bid_bonds.png"
-                alt="Placeholder"
-                // layout="fill"
-                // objectFit="contain"
-                className="h-[27rem] w-full"
-              />
-            </div>
-            {/* Corner plus icons - only in video section */}
-            {/* <div className="absolute w-4 h-4 text-gray-400 -top-2 -left-2">
-                  <svg viewBox="0 0 16 16" fill="currentColor">
-                    <path
-                      d="M8 0v16M0 8h16"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
-                <div className="absolute w-4 h-4 text-gray-400 -top-2 -right-2">
-                  <svg viewBox="0 0 16 16" fill="currentColor">
-                    <path
-                      d="M8 0v16M0 8h16"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                </div> */}
-            {/* <div className="absolute w-4 h-4 text-gray-400 -bottom-2 -left-2">
-                  <svg viewBox="0 0 16 16" fill="currentColor">
-                    <path
-                      d="M8 0v16M0 8h16"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                </div>
-                <div className="absolute w-4 h-4 text-gray-400 -bottom-2 -right-2">
-                  <svg viewBox="0 0 16 16" fill="currentColor">
-                    <path
-                      d="M8 0v16M0 8h16"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                </div> */}
-          </div>
-        </div>
+      <Section className="py-10 bg-background relative">
+        <img
+          src="/images/bid_bonds.png"
+          alt="Placeholder"
+          className="h-[27rem] w-auto mx-auto"
+        />
+        <div className="absolute bottom-10 h-24 w-full bg-gradient-to-b from-transparent to-[#F4F8F9]" />
       </Section>
 
-      <div className="relative w-full h-px border-t border-grey border-dotted">
+      <div className="relative w-full h-px border-t border-dotted border-grey">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
             <svg viewBox="0 0 12 12" className="w-full h-full">
@@ -233,7 +183,7 @@ const GlobalTrade = () => {
 
       <Section
         wrapperClassName="bg-[url('/images/global_progress_bg.jpg')] bg-cover bg-center"
-        className="relative mx-auto overflow-hidden py-12"
+        className="relative py-12 mx-auto overflow-hidden"
       >
         <div className="relative z-10 ">
           <div className="relative z-10 px-8 text-center text-white">
