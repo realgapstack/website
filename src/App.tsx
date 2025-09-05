@@ -1,7 +1,7 @@
 import {
   Navigate,
   Route,
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
 } from "react-router-dom";
 import Layout from "./components/layout/Layout";
@@ -14,7 +14,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<GlobalPayments />} />
-          <Route path="global-payments" element={<GlobalPayments />} />
           <Route path="global-trade" element={<GlobalTrade />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
