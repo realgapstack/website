@@ -163,7 +163,7 @@ const GlobalTrade = () => {
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-indigo-900">
-                  Onboarding Finance
+                  Onboarding For Finance
                 </h3>
                 <p className="mt-2 text-gray-600">
                   Our solution, powered by artificial intelligence and connected
