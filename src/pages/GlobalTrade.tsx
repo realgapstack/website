@@ -5,7 +5,7 @@ const GlobalTrade = () => {
   return (
     <div>
       <Section className="pt-10 text-center pb-7">
-        <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
+        <h1 className="mb-4 text-2xl font-bold leading-tight md:text-5xl lg:text-5xl md:mb-6 text-balance">
           The single Digital Trade Financing Platform
         </h1>
         <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -43,13 +43,13 @@ const GlobalTrade = () => {
         </div>
       </div>
 
-      <Section className="py-10 bg-background relative">
+      <Section className="relative pt-10 bg-background">
         <img
           src="/images/bid_bonds.png"
           alt="Placeholder"
           className="h-[27rem] w-auto mx-auto"
         />
-        <div className="absolute bottom-10 h-24 w-full bg-gradient-to-b from-transparent to-[#F4F8F9]" />
+        {/* <div className="absolute w-full bg-gradient-to-b from-transparent to-background" /> */}
       </Section>
 
       <div className="relative w-full h-px border-t border-dotted border-grey">

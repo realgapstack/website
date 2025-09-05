@@ -17,22 +17,34 @@ const GlobalPayments = () => {
   ];
   return (
     <div className="">
-      <Section className="pt-10 pb-8 text-center">
-        <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6 text-balance">
-          Building Trust And Driving Growth By Revolutionizing How Money Moves
-          Across Borders.
-        </h1>
-        <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+      <Section className="relative pt-10 pb-8 text-center">
+        <div className="relative max-w-[618px] mx-auto">
+          <h1 className="relative z-10 mb-4 text-4xl font-bold md:leading-14 md:text-5xl md:mb-6 text-balance">
+            Building Trust And Driving Growth By Revolutionizing How Money Moves
+            Across Borders.
+          </h1>
+        </div>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-2/3 w-[587px] h-96 object-covering opacity-20"
+        >
+          <source src="/tester.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <p className="text-gray-600 text-base text-[13px] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed z-10 relative">
           With Gapstack, you can create new revenue streams and build customer
           loyalty by offering seamless, transparent multi-currency, multi
           country solutions. Our platform ensure security and compliance every
           step of the way.
         </p>
-        <div className="flex flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:gap-6">
+        <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:gap-6">
           <Button onClick={openSheet}> Unlock Your Potential</Button>
         </div>
       </Section>
-
       <div className="relative w-full">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
@@ -57,7 +69,6 @@ const GlobalPayments = () => {
           </div>
         </div>
       </div>
-
       <Section wrapperClassName="">
         <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
           <img
@@ -91,9 +102,7 @@ const GlobalPayments = () => {
           </div>
         </div>
       </div>
-
       <Section className="h-12" />
-
       {/* <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
         <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
           <img
@@ -103,10 +112,9 @@ const GlobalPayments = () => {
           />
         </div>
       </section> */}
-
       <Section className="">
         <div className="container grid items-center grid-cols-12 px-4 mx-auto align-center">
-          <div className="col-span-3 py-12 border-r border-grey border-dotted">
+          <div className="col-span-3 py-12 border-r border-dotted border-grey">
             <p className="text-center text-muted-foreground ">
               Powering global payments for:
             </p>
@@ -143,11 +151,8 @@ const GlobalPayments = () => {
           </div>
         </div>
       </Section>
-
       <GapstackFeatures />
-
       <PaymentMethods />
-
       <section className="pt-8 md:pt-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey bg-background">
         <div className=" md:px-0">
           <div className="grid items-end gap-8 lg:grid-cols-12 md:gap-10 ">
@@ -174,9 +179,7 @@ const GlobalPayments = () => {
           </div>
         </div>
       </section>
-
-      <div className="relative w-full h-px border-t border-grey border-dotted" />
-
+      <div className="relative w-full h-px border-t border-dotted border-grey" />
       <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
         <div className=" md:px-0">
           <div className="">
@@ -191,7 +194,6 @@ const GlobalPayments = () => {
           </div>
         </div>
       </section>
-
       <ContactSalesSheet open={isOpen} onOpenChange={closeSheet} />
     </div>
   );
