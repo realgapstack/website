@@ -20,7 +20,7 @@ export default function Button({
 
   const variants = {
     primary:
-      "border border-[#7c60ff29] shadow-[0px_0px_7px_#7c60ffe6] bg-gradient-to-r from-[#7c60ffe6] to-[#7c60ffcc] text-white hover:shadow-[0px_0px_10px_#7c60ffe6]",
+      "border border-[#7c60ff29] shadow-[0px_0px_7px_#7c60ffe6] bg-gradient-to-r from-[#7c60ffe6] to-[#7c60ffcc] text-white hover:shadow-[0px_0px_10px_#7c60ffe6] cursor-pointer",
     secondary:
       "border border-gray-300 text-gray-700 bg-transparent hover:bg-gray-50",
   };
