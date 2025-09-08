@@ -1,7 +1,59 @@
 import Section from "@/components/Section";
 import Button from "../components/Button";
 
+// Reusable feature item component
+interface Feature {
+  title: string;
+  icon: string;
+  bg: string;
+  description: string;
+}
+
+const FeatureItem = ({ title, icon, bg, description }: Feature) => (
+  <div>
+    <div
+      className={`flex items-center justify-center w-10 h-10 mb-2 rounded-full ${bg}`}
+    >
+      <img src={`/icons/${icon}.svg`} alt="" className="w-5 h-5" />
+    </div>
+    <h3 className="text-xl font-semibold ">{title}</h3>
+    <p className="mt-2 text-gray-600">{description}</p>
+  </div>
+);
+
 const GlobalTrade = () => {
+  // Feature definitions
+  const features: Feature[] = [
+    {
+      title: "Onboarding For Finance",
+      icon: "user-search-01",
+      bg: "bg-orange/20",
+      description:
+        "Our solution, powered by artificial intelligence and connected to key government and business databases, cuts from days to minutes KnowYourCustomer (KYC)and KnowYourBusiness (KYB) compliance, resulting in faster decision making.",
+    },
+    {
+      title: "Supply Chain Finance",
+      icon: "container-truck-01",
+      bg: "bg-primary-blue/20",
+      description:
+        "From invoice discounting, reverse factoring to distributor finance, Gapstack unlocks working capital for your trade transactions, allowing you to access finance immediately, via USD, WhatsApp, Web & Telegram, wherever you are.",
+    },
+    {
+      title: "Trade Finance Solutions",
+      icon: "boat",
+      bg: "bg-purple-primary/20",
+      description:
+        "Unlock strategic funding pockets for international trade. We have built robust automation to streamline trade finance processes which help in accessing import and export financing.",
+    },
+    {
+      title: "Enterprise Management",
+      icon: "tags",
+      bg: "bg-green/20",
+      description:
+        "We even provide the ERP tools for you tomanage business flows, optimise your finance and improve your credit scoring.",
+    },
+  ];
+
   return (
     <div>
       <Section className="pt-10 text-center pb-7">
@@ -44,12 +96,15 @@ const GlobalTrade = () => {
       </div>
 
       <Section className="relative pt-10 bg-background">
-        <img
-          src="/images/bid_bonds.png"
-          alt="Placeholder"
-          className="h-[27rem] w-auto mx-auto"
-        />
-        {/* <div className="absolute w-full bg-gradient-to-b from-transparent to-background" /> */}
+        <div className="relative mx-auto w-fit ">
+          <img
+            src="/images/bid_bonds.png"
+            alt="Placeholder"
+            className="h-[27rem] w-auto"
+          />
+          {/* Gradient overlay on top of image (right fade) */}
+          <div className="pointer-events-none absolute right-0 left-0 bg-gradient-to-r from-[rgba(244,248,249,0)] to-[rgba(244,248,249,1)] h-14 bottom-0" />
+        </div>
       </Section>
 
       <div className="relative w-full h-px border-t border-dotted border-grey">
@@ -92,90 +147,16 @@ const GlobalTrade = () => {
             {/* Image */}
             <div className="h-full col-span-4 overflow-hidden bg-gray-200 rounded-lg">
               <img
-                src="/images/os_image.png" // Replace with actual image URL or path
+                src="/images/os_image.png"
                 alt="Person handling fruits"
-                // width={384}
-                // height={416}
                 className="object-cover w-full h-full"
               />
             </div>
             {/* Features */}
             <div className="grid grid-cols-2 col-span-8 gap-8 pr-2">
-              <div className="">
-                <div className="flex items-center justify-center w-8 h-8 mb-2 bg-orange-100 rounded-full">
-                  <img
-                    src={`/icons/user-search-01.svg`}
-                    alt=""
-                    // height={20}
-                    // width={20}
-                    className=""
-                  />
-                </div>
-                <h3 className="text-xl font-semibold ">
-                  Onboarding For Finance
-                </h3>
-                <p className="mt-2 text-gray-600">
-                  Our solution, powered by artificial intelligence and connected
-                  to key government and business databases, cuts from days to
-                  minutes KnowYourCustomer (KYC)and KnowYourBusiness (KYB)
-                  compliance, resulting in faster decision making.
-                </p>
-              </div>
-              <div className="">
-                <div className="flex items-center justify-center w-8 h-8 mb-2 bg-blue-100 rounded-full">
-                  <img
-                    src={`/icons/container-truck-01.svg`}
-                    alt=""
-                    // height={20}
-                    // width={20}
-                    className=""
-                  />
-                </div>
-                <h3 className="text-xl font-semibold ">Supply Chain Finance</h3>
-                <p className="mt-2 text-gray-600">
-                  From invoice discounting, reverse factoring to distributor
-                  finance, Gapstack unlocks working capital for your trade
-                  transactions, allowing you to access finance immediately, via
-                  USD, WhatsApp, Web & Telegram, wherever you are.
-                </p>
-              </div>
-              <div className="">
-                <div className="flex items-center justify-center w-8 h-8 mb-2 bg-pink-100 rounded-full">
-                  <img
-                    src={`/icons/boat.svg`}
-                    alt=""
-                    height={20}
-                    width={20}
-                    className=""
-                  />
-                </div>
-                <h3 className="text-xl font-semibold ">
-                  Trade Finance Solutions
-                </h3>
-                <p className="mt-2 text-gray-600">
-                  Unlock strategic funding pockets for international trade. We
-                  have built robust automation to streamline trade finance
-                  processes which help in accessing import and export financing.
-                </p>
-              </div>
-              <div className="">
-                <div className="flex items-center justify-center w-8 h-8 mb-2 bg-green-100 rounded-full">
-                  <img
-                    src={`/icons/tags.svg`}
-                    alt=""
-                    // height={20}
-                    // width={20}
-                    className=""
-                  />
-                </div>
-                <h3 className="text-xl font-semibold ">
-                  Enterprise Management
-                </h3>
-                <p className="mt-2 text-gray-600">
-                  We even provide the ERP tools for you tomanage business flows,
-                  optimise your finance and improve your credit scoring.
-                </p>
-              </div>
+              {features.map((f) => (
+                <FeatureItem key={f.title} {...f} />
+              ))}
             </div>
           </div>
         </div>
@@ -221,8 +202,6 @@ const GlobalTrade = () => {
               <img
                 src="/images/explore_one.png"
                 alt="Bid Bonds"
-                // layout="fill"
-                // objectFit="contain"
                 className=""
                 height={160}
                 width={316}
@@ -242,8 +221,6 @@ const GlobalTrade = () => {
               <img
                 src="/images/explore_two.png"
                 alt="Bid Bonds"
-                // layout="fill"
-                // objectFit="contain"
                 className=""
                 height={160}
                 width={316}
@@ -262,8 +239,6 @@ const GlobalTrade = () => {
               <img
                 src="/images/explore_three.png"
                 alt="Bid Bonds"
-                // layout="fill"
-                // objectFit="contain"
                 className=""
                 height={160}
                 width={316}

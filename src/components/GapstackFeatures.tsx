@@ -9,13 +9,13 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    iconBgColor: "bg-orange-100",
+    iconBgColor: "bg-orange/20",
     icon: "nano-technology",
     title: "Powerful and cutting-edge technology",
     items: ["Modern scalable API", "Easy integration", "Simplified operations"],
   },
   {
-    iconBgColor: "bg-blue-100",
+    iconBgColor: "bg-primary-blue/20",
     icon: "user-sharing",
     title: "Build relationships with vendors",
     items: [
@@ -25,7 +25,7 @@ const features: Feature[] = [
     ],
   },
   {
-    iconBgColor: "bg-green-100",
+    iconBgColor: "bg-green/20",
     icon: "tags",
     title: "White Labelled",
     items: [
@@ -36,7 +36,7 @@ const features: Feature[] = [
     ],
   },
   {
-    iconBgColor: "bg-purple-100",
+    iconBgColor: "bg-purple-primary/20",
     icon: "magic-wand-01",
     title: "AI - assisted",
     items: [
@@ -75,19 +75,13 @@ export default function GapstackFeatures({
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 col-span-7 space-6 md:space-8">
+        <div className="grid grid-cols-2 col-span-7 gap-6">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col gap-3 md:gap-4">
               <div
                 className={`w-10 h-10 md:w-12 md:h-12 ${feature.iconBgColor} rounded-full flex items-center justify-center flex-shrink-0`}
               >
-                <img
-                  src={`/icons/${feature.icon}.svg`}
-                  alt=""
-                  // height={20}
-                  // width={20}
-                  className=""
-                />
+                <img src={`/icons/${feature.icon}.svg`} alt="" className="" />
               </div>
               <div>
                 <h3 className="mb-2 text-sm font-semibold text-gray-900 md:text-base">
