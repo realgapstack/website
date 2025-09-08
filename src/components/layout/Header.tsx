@@ -6,7 +6,7 @@ import { ContactSalesSheet } from "../ContactSalesSheet";
 const NavLinkItem = ({ to, label }: { to: string; label: string }) => (
   <NavLink
     to={to}
-    end // ensures "/" only matches exactly for index
+    end
     className={({ isActive }) =>
       `text-sm transition-colors duration-200 ${
         isActive
@@ -37,7 +37,7 @@ export default function Header() {
           <Button onClick={openSheet}>Contact Sales</Button>
         </div>
       </header>
-      <div className="relative w-full h-px border-t border-grey border-dotted">
+      <div className="relative w-full h-px border-t border-dotted border-grey">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
             <svg viewBox="0 0 12 12" className="w-full h-full">

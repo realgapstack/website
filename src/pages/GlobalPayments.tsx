@@ -2,9 +2,31 @@ import Button from "@/components/Button";
 import { ContactSalesSheet } from "@/components/ContactSalesSheet";
 import { useContactSales } from "@/hooks/useContactSales";
 // import { Section } from "lucide-react";
+import { CustomCarousel } from "@/components/CustomCarousel";
 import Section from "@/components/Section";
 import GapstackFeatures from "../components/GapstackFeatures";
 import PaymentMethods from "../components/PaymentMethods";
+
+const slides = [
+  {
+    image: "/images/image_four.png",
+    title: "Our Platform",
+    bullets: [
+      "Full suite of APIs that fits the targeted audience",
+      "Highly flexible to adapt to business innovations",
+      "Extensive developer tools to ease and speed up integration",
+    ],
+  },
+  {
+    image: "/images/image_five.png",
+    title: "Our Platform",
+    bullets: [
+      "Architecture designed for scalability & data protection",
+      "Compliance management tools",
+      "Real time transactions and notifications",
+    ],
+  },
+];
 
 const GlobalPayments = () => {
   const { openSheet, isOpen, closeSheet } = useContactSales();
@@ -153,8 +175,9 @@ const GlobalPayments = () => {
       </Section>
       <GapstackFeatures />
       <PaymentMethods />
-      <section className="pt-8 md:pt-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey bg-background">
-        <div className=" md:px-0">
+      <Section className="bg-background pt-28">
+        <CustomCarousel slides={slides} />
+        {/* <div className=" md:px-0">
           <div className="grid items-end gap-8 lg:grid-cols-12 md:gap-10 ">
             <div className="col-span-7">
               <img
@@ -177,8 +200,8 @@ const GlobalPayments = () => {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
+        </div> */}
+      </Section>
       <div className="relative w-full h-px border-t border-dotted border-grey" />
       <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
         <div className=" md:px-0">
