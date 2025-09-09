@@ -146,3 +146,15 @@ body {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+.slick-list,
+.slick-track {
+  height: calc(100vh - 12px) !important;
+}
+
+.slick-vertical .slick-slide {
+  height: inherit;
+}
+.slick-vertical .slick-slide > div:nth-of-type(1) {
+  height: 100%;
+}

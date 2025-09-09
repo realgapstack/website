@@ -1,18 +1,21 @@
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { useRef, useState } from "react";
+import Slider from "react-slick";
 import Button from "./Button";
 
 interface ContactSalesSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
+
+const CustomSlide = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="flex flex-col justify-center h-full px-4">{children}</div>
+  );
+};
 
 export function ContactSalesSheet({
   open,
@@ -25,40 +28,40 @@ export function ContactSalesSheet({
     message: "",
   });
 
-  const totalSteps = 4;
-
-  const handleNext = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<{
+    fullName?: string;
+    email?: string;
+    message?: string;
+  }>({});
+
+  const totalSteps = 4;
+  const carouselRef = useRef<Slider>(null);
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    verticalSwiping: true,
+    beforeChange: (_oldIndex: number, newIndex: number) => {
+      setCurrentStep(newIndex + 1);
+    },
+  };
+
+  const handleNext = () => carouselRef.current?.slickNext();
+  const handlePrevious = () => carouselRef.current?.slickPrev();
 
   const handleComplete = async () => {
-    if (!formData.fullName || !formData.email || !formData.message) {
-      setSubmitError("Please fill in all required fields");
-      return;
-    }
-
     setIsSubmitting(true);
-    setSubmitError(null);
 
     try {
       const response = await fetch(
         "https://demo.gapstack.com:8443/website-backend/message",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: formData.fullName,
             email: formData.email,
@@ -67,196 +70,199 @@ export function ContactSalesSheet({
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! ${response.status}`);
 
-      // Reset form and close on success
-      setCurrentStep(1);
       setFormData({ fullName: "", email: "", message: "" });
+      setErrors({});
+      setCurrentStep(1);
       onOpenChange(false);
-
-      // You might want to show a success message here
-      console.log("Form submitted successfully");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setSubmitError("Failed to submit form. Please try again.");
+    } catch (err) {
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleOpenChange = (newOpen: boolean) => {
-    if (!newOpen) {
-      setCurrentStep(1);
-      setFormData({ fullName: "", email: "", message: "" });
-    }
-    onOpenChange(newOpen);
+  const validateEmail = (value: string) => {
+    if (!value) return "Email is required";
+    const re = /^\S+@\S+\.\S+$/;
+    if (!re.test(value)) return "Enter a valid email";
+    return "";
+  };
+
+  const validateFullName = (value: string) => {
+    if (!value || !value.trim()) return "Full name is required";
+    if (value.trim().length < 2) return "Full name is too short";
+    return "";
+  };
+
+  const validateMessage = (value: string) => {
+    if (!value || !value.trim()) return "Message is required";
+    if (value.trim().length < 10) return "Message is too short";
+    return "";
+  };
+
+  const setField = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    let err = "";
+    if (field === "fullName") err = validateFullName(value);
+    if (field === "email") err = validateEmail(value);
+    if (field === "message") err = validateMessage(value);
+    setErrors((prev) => ({ ...prev, [field]: err || undefined }));
   };
 
   return (
-    <Sheet open={open} onOpenChange={handleOpenChange}>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="bg-background transition-transform duration-300 ease-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-right-full w-full sm:w-[40%] overflow-y-auto h-full"
+        className="bg-background w-full sm:w-[40%] h-full flex flex-col"
       >
-        <SheetHeader className="mb-8">
-          <SheetTitle className="sr-only">Gapstack Onboarding</SheetTitle>
-        </SheetHeader>
-
-        <div className="flex flex-col h-full p-4">
-          {/* Content */}
-          <div className="flex-1 flex flex-col justify-center">
-            {currentStep === 1 && (
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-foreground">
-                    Let's get started
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Tell us about yourself and how we can help with your
-                    business needs. We'll get back to you as soon as possible.
-                  </p>
-                </div>
+        <div className="flex justify-end p-4 sm:hidden">
+          <button
+            onClick={() => onOpenChange(false)}
+            className="p-2 rounded-md hover:bg-muted"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        {/* Steps */}
+        <div className="flex-1 overflow-hidden">
+          <Slider
+            ref={carouselRef}
+            {...settings}
+            className="h-full overflow-hidden"
+          >
+            {/* Step 1 */}
+            <CustomSlide>
+              <h2 className="mb-4 text-2xl font-bold">Partner with Gapstack</h2>
+              <p className="mb-8 text-muted-foreground">
+                Supply chain financing is made simple by the Gapstack platform
+                which uniquely gives access to finance at all points in the
+                chain.
+              </p>
+              <div className="inline-block">
                 <Button
                   onClick={handleNext}
-                  className="bg-purple-primary hover:bg-purple-700 text-white w-full py-6 text-base"
+                  className="px-4 py-2 text-base text-white bg-purple-primary hover:bg-purple-700"
                 >
                   Get Started
                 </Button>
               </div>
-            )}
+            </CustomSlide>
 
-            {currentStep === 2 && (
-              <div className="space-y-8">
-                <div className="space-y-8">
-                  <div>
-                    <label
-                      htmlFor="fullName"
-                      className="text-sm font-medium text-muted-foreground mb-1 block"
-                    >
-                      Full Name
-                    </label>
-                    <Input
-                      id="fullName"
-                      value={formData.fullName}
-                      placeholder="Enter your full name"
-                      onChange={(e) =>
-                        setFormData({ ...formData, fullName: e.target.value })
-                      }
-                      className="text-lg p-0 border-0 border-b rounded-none focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-purple-500"
-                    />
-                  </div>
+            {/* Step 2 */}
+            <CustomSlide>
+              <label className="mb-1 text-sm font-medium text-muted-foreground">
+                Full Name
+              </label>
+              <Input
+                value={formData.fullName}
+                placeholder="Enter your full name"
+                onChange={(e) => setField("fullName", e.target.value)}
+                className="text-lg border-0 border-b rounded-none shadow-none border-muted-foreground focus:border-b-2 focus:border-purple-500 focus:ring-0 focus-visible:ring-0 focus-visible:shadow-none focus:outline-none"
+              />
+              {errors.fullName && (
+                <div className="mt-2 text-sm text-red-500">
+                  {errors.fullName}
                 </div>
-                <div className="flex justify-between pt-4">
-                  <Button
-                    // variant="ghost"
-                    onClick={handlePrevious}
-                    className="text-muted-foreground"
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    onClick={handleNext}
-                    className="bg-purple-primary hover:bg-purple-700 text-white px-8"
-                    // disabled={!formData.fullName.trim()}
-                  >
-                    Continue
-                  </Button>
-                </div>
+              )}
+              <div className="mt-8">
+                <Button
+                  onClick={handleNext}
+                  className="px-8 text-white bg-purple-primary hover:bg-purple-700"
+                >
+                  Continue
+                </Button>
               </div>
-            )}
+            </CustomSlide>
 
-            {currentStep === 3 && (
-              <div className="space-y-8">
-                <div className="space-y-8">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-muted-foreground mb-1 block"
-                    >
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      placeholder="Enter your email address"
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="text-lg p-0 border-0 border-b rounded-none focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-purple-500"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-between pt-4">
-                  <Button
-                    // variant="ghost"
-                    onClick={handlePrevious}
-                    className="text-muted-foreground"
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    onClick={handleNext}
-                    className="bg-purple-primary hover:bg-purple-700 text-white px-8"
-                  >
-                    Continue
-                  </Button>
-                </div>
+            {/* Step 3 */}
+            <CustomSlide>
+              <label className="mb-1 text-sm font-medium text-muted-foreground">
+                Email Address
+              </label>
+              <Input
+                type="email"
+                value={formData.email}
+                placeholder="Enter your email"
+                onChange={(e) => setField("email", e.target.value)}
+                className="text-lg border-0 border-b rounded-none shadow-none border-muted-foreground focus:border-b-2 focus:border-purple-500 focus:ring-0 focus-visible:ring-0 focus-visible:shadow-none focus:outline-none"
+              />
+              {errors.email && (
+                <div className="mt-2 text-sm text-red-500">{errors.email}</div>
+              )}
+              <div className="mt-8">
+                <Button
+                  onClick={handleNext}
+                  className="px-8 text-white bg-purple-primary hover:bg-purple-700"
+                >
+                  Continue
+                </Button>
               </div>
-            )}
+            </CustomSlide>
 
-            {currentStep === 4 && (
-              <div className="space-y-8">
-                <div className="space-y-8">
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium text-muted-foreground mb-1 block"
-                    >
-                      Your Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      placeholder="Tell us how we can help you..."
-                      className="min-h-[120px] text-lg p-0 border-0 border-b rounded-none focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-purple-500 resize-none"
-                    />
-                  </div>
+            {/* Step 4 */}
+            <CustomSlide>
+              <label className="mb-1 text-sm font-medium text-muted-foreground">
+                Your Message
+              </label>
+              <Textarea
+                value={formData.message}
+                placeholder="Tell us how we can help you..."
+                onChange={(e) => setField("message", e.target.value)}
+                className="min-h-[120px] text-lg border-0 border-b border-muted-foreground rounded-none focus:border-b-2 focus:border-purple-500 focus:ring-0 focus-visible:ring-0 focus-visible:shadow-none focus:outline-none shadow-none resize-none"
+              />
+              {errors.message && (
+                <div className="mt-2 text-xs text-red-500">
+                  {errors.message}
                 </div>
-                <div className="flex justify-between pt-4">
-                  <Button
-                    // variant="ghost"
-                    onClick={handlePrevious}
-                    className="text-muted-foreground"
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    onClick={handleComplete}
-                    className={`bg-purple-primary hover:bg-purple-700 text-white px-8 ${
-                      !formData.message.trim() || isSubmitting
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }`}
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit"}
-                  </Button>
-                </div>
-                {submitError && (
-                  <div className="mt-4 text-sm text-red-500">{submitError}</div>
-                )}
+              )}
+              <div className="mt-8">
+                <Button
+                  onClick={handleComplete}
+                  className={`bg-purple-primary hover:bg-purple-700 text-white px-8 ${
+                    !formData.message.trim() ||
+                    isSubmitting ||
+                    Object.values(errors).some(Boolean)
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+                  }`}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </Button>
               </div>
-            )}
+            </CustomSlide>
+          </Slider>
+        </div>
+        {/* Pagination + Nav */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="text-sm text-muted-foreground">
+            <span className="text-xl font-bold text-foreground">
+              {currentStep}
+            </span>
+            <span className="mx-1 text-base font-normal text-muted-foreground">
+              /
+            </span>
+            <span className="text-base font-normal text-muted-foreground">
+              {totalSteps}
+            </span>
           </div>
-
-          {submitError && (
-            <div className="mt-4 text-sm text-red-500">{submitError}</div>
-          )}
+          <div className="flex">
+            <button
+              onClick={handlePrevious}
+              className="p-3 mr-2 rounded-sm cursor-pointer bg-purple-primary"
+              disabled={currentStep === 1}
+            >
+              <ArrowLeft className="w-5 h-5 text-white" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-3 mr-2 rounded-sm cursor-pointer bg-purple-primary"
+              disabled={currentStep === totalSteps}
+            >
+              <ArrowRight className="w-5 h-5 text-white" />
+            </button>
+          </div>
         </div>
       </SheetContent>
     </Sheet>
