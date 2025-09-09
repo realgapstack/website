@@ -4,6 +4,12 @@ import { useContactSales } from "@/hooks/useContactSales";
 // import { Section } from "lucide-react";
 import { CustomCarousel } from "@/components/CustomCarousel";
 import Section from "@/components/Section";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"; // Adjust the import path based on your project setup
+import AutoScroll from "embla-carousel-auto-scroll";
 import GapstackFeatures from "../components/GapstackFeatures";
 import PaymentMethods from "../components/PaymentMethods";
 
@@ -35,7 +41,7 @@ const GlobalPayments = () => {
     { name: "NMB", logo: "nmb" },
     { name: "Credit Bank", logo: "credit-bank" },
     { name: "Simba Money", logo: "simba-money" },
-    { name: "Menswitch", logo: "kenswitch" },
+    { name: "Kenswitch", logo: "kenswitch" },
   ];
   return (
     <div className="">
@@ -125,17 +131,9 @@ const GlobalPayments = () => {
         </div>
       </div>
       <Section className="h-12" />
-      {/* <section className="w-full max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
-        <div className="relative overflow-hidden bg-gray-100 rounded-2xl">
-          <img
-            src="/images/image_two.png"
-            alt=""
-            className="object-cover w-full h-48 md:h-96"
-          />
-        </div>
-      </section> */}
+
       <Section className="">
-        <div className="container grid items-center grid-cols-12 px-4 mx-auto align-center">
+        <div className="container grid items-center grid-cols-12 mx-auto sm:px-4 align-center">
           <div className="col-span-3 py-12 border-r border-dotted border-grey">
             <p className="text-center text-muted-foreground ">
               Powering global payments for:
@@ -143,33 +141,35 @@ const GlobalPayments = () => {
           </div>
 
           <div className="relative w-full col-span-9 overflow-hidden">
-            <div className="relative flex">
-              {/* First set of logos */}
-              <div className="flex items-center justify-around min-w-full shrink-0 animate-scroll">
-                {logos.map((company, index) => (
-                  <div key={index} className="mx-6">
+            <Carousel
+              opts={{
+                loop: true,
+                dragFree: true,
+              }}
+              plugins={[
+                AutoScroll({
+                  speed: 1,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="flex">
+                {[...logos, ...logos].map((company, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="flex-shrink-0 mx-4 basis-auto"
+                  >
                     <img
                       src={`/images/logos/${company.logo}.png`}
                       alt={company.name}
                       className="object-contain transition-opacity duration-300 h-11 hover:opacity-100"
                     />
-                  </div>
+                  </CarouselItem>
                 ))}
-              </div>
-
-              {/* Second set of logos for seamless looping */}
-              <div className="flex items-center justify-around min-w-full shrink-0 animate-scroll">
-                {logos.map((company, index) => (
-                  <div key={`duplicate-${index}`} className="mx-6">
-                    <img
-                      src={`/images/logos/${company.logo}.png`}
-                      alt={company.name}
-                      className="object-contain transition-opacity duration-300 h-11 hover:opacity-100"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </Section>
@@ -177,30 +177,6 @@ const GlobalPayments = () => {
       <PaymentMethods />
       <Section className="bg-background pt-28">
         <CustomCarousel slides={slides} />
-        {/* <div className=" md:px-0">
-          <div className="grid items-end gap-8 lg:grid-cols-12 md:gap-10 ">
-            <div className="col-span-7">
-              <img
-                src="/images/image_four.png"
-                alt=""
-                className="object-cover w-full rounded-tr-2xl h-60 md:h-80"
-              />
-            </div>
-            <div className="col-span-4">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl md:mb-6">
-                Our Platform
-              </h2>
-
-              <ul className="pb-5 text-gray-600 list-disc list-inside ">
-                <li>Full suite of APIs the fits targeted audience</li>
-                <li> Highly flexible to adapt to business innovations</li>
-                <li>
-                  Extensive developer tools to ease and speed up integration
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
       </Section>
       <div className="relative w-full h-px border-t border-dotted border-grey" />
       <section className="text-center py-8 md:py-16 max-w-[979px] mx-auto border-l border-r border-dotted border-l-grey border-r-grey">
