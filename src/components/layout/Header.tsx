@@ -10,8 +10,8 @@ const NavLinkItem = ({ to, label }: { to: string; label: string }) => (
     className={({ isActive }) =>
       `text-sm transition-colors duration-200 ${
         isActive
-          ? "text-[#7C60FF] font-semibold"
-          : "text-gray-600 hover:text-[#7C60FF]"
+          ? "text-purple-primary font-semibold"
+          : "text-gray-600 hover:text-purple-primary"
       }`
     }
   >
@@ -26,7 +26,7 @@ export default function Header() {
       <header className="flex items-center justify-between pb-4 pt-10 max-w-[979px] mx-auto border-gray-100 border-l border-r border-dotted border-l-grey border-r-grey relative w-full">
         <div>
           <NavLink to="/" end>
-            <img src="/logo.svg" alt="Gapstack Logo" className="h-8" />
+            <img src="/logo_two.svg" alt="Gapstack Logo" className="h-8" />
           </NavLink>
         </div>
         <nav className="items-center hidden space-x-6 md:flex">
