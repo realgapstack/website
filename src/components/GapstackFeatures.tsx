@@ -61,43 +61,51 @@ export default function GapstackFeatures({
       <h2 className="mb-5 text-2xl font-bold text-center text-gray-900 md:text-3xl">
         {title}
       </h2>
-      <div className="grid grid-cols-12 gap-6 md:gap-8">
-        <div className="col-span-5">
-          <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-2xl border border-gray-200 overflow-hidden">
+
+      <div className="grid items-start grid-cols-12 gap-6 md:gap-8">
+        {/* Image: full width on mobile, left column on md+ */}
+        <div className="col-span-12 md:col-span-5">
+          <div className="relative w-full h-full min-h-[240px] md:min-h-[400px] rounded-2xl border border-gray-200 overflow-hidden">
             <div
               className={`absolute inset-0 ${imagePlaceholderBg} flex items-center justify-center`}
             >
               <img
                 src="/images/image_three.png"
-                alt="image_two"
+                alt="image_three"
                 className="object-cover w-full h-full"
               />
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 col-span-7 gap-6">
-          {features.map((feature, index) => (
-            <div key={index} className="flex flex-col gap-3 md:gap-4">
+
+        {/* Features: stacked on mobile (1 col), two columns on md+ */}
+        <div className="col-span-12 md:col-span-7">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {features.map((feature, index) => (
               <div
-                className={`w-10 h-10 md:w-12 md:h-12 ${feature.iconBgColor} rounded-full flex items-center justify-center flex-shrink-0`}
+                key={index}
+                className="flex flex-row items-start gap-3 md:flex-col md:gap-4"
               >
-                <img src={`/icons/${feature.icon}.svg`} alt="" className="" />
+                <div
+                  className={`w-10 h-10 md:w-12 md:h-12 ${feature.iconBgColor} rounded-full flex items-center justify-center flex-shrink-0`}
+                >
+                  <img src={`/icons/${feature.icon}.svg`} alt="" />
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-gray-900 md:text-base">
+                    {feature.title}
+                  </h3>
+                  <ul className="space-y-1 text-xs text-gray-600 md:text-sm">
+                    {feature.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="list-disc list-inside">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-2 text-sm font-semibold text-gray-900 md:text-base">
-                  {feature.title}
-                </h3>
-                <ul className="space-y-1 text-xs text-gray-600 md:text-sm">
-                  {feature.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="list-disc list-inside">
-                      {" "}
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </Section>

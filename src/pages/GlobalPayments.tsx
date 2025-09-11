@@ -175,7 +175,7 @@ const GlobalPayments = () => {
       </Section>
       <GapstackFeatures />
       <PaymentMethods />
-      <Section className="bg-background pt-28">
+      <Section className="pt-16 bg-background md:pt-28">
         <CustomCarousel slides={slides} />
       </Section>
       <div className="relative w-full h-px border-t border-dotted border-grey" />

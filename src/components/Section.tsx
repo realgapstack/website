@@ -1,7 +1,7 @@
 function Section({
   children,
-  className,
-  wrapperClassName,
+  className = "",
+  wrapperClassName = "",
 }: {
   children?: React.ReactNode;
   className?: string;
