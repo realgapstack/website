@@ -18,23 +18,31 @@ const FooterLocationItem = ({
 export default function Footer() {
   return (
     <footer className="bg-background">
-      <div className="max-w-[979px] mx-auto border-l border-r border-dotted border-grey pt-12 pb-7">
-        <div className="flex justify-between pb-10">
-          <div className="col-span-2 md:col-span-1">
+      <div className="max-w-[979px] mx-auto border-l border-r border-dotted border-grey pt-8 pb-7 px-4 md:px-0">
+        <div className="flex flex-col gap-8 pb-8 md:flex-row md:justify-between md:gap-0">
+          <div className="flex items-center justify-start flex-shrink-0">
             <Link to="/">
               <img
                 src="/logo_two.svg"
                 alt="Gapstack Logo"
-                className="w-auto h-9"
+                className="w-auto h-8 md:h-9"
               />
             </Link>
           </div>
-          <div className="flex gap-10">
-            <FooterLocationItem location="Kenya" address="Nairobi" />
-            <FooterLocationItem location="India" address="New Delhi" />
-            <FooterLocationItem location="Singapore" address="Singapore" />
+
+          <div className="flex flex-wrap items-start gap-6 md:items-center md:gap-10">
+            <div className="flex-1 min-w-0 md:flex-initial">
+              <FooterLocationItem location="Kenya" address="Nairobi" />
+            </div>
+            <div className="flex-1 min-w-0 md:flex-initial">
+              <FooterLocationItem location="India" address="New Delhi" />
+            </div>
+            <div className="basis-full md:flex-initial">
+              <FooterLocationItem location="Singapore" address="Singapore" />
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
+
+          <div className="flex flex-col items-start gap-2 md:items-end">
             <a
               href="mailto:sales@gapstack.com"
               className="text-sm text-purple hover:underline"
@@ -55,17 +63,21 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex items-end justify-between">
-          <div>
+
+        {/* Bottom area: partner badge and copyright - center on mobile */}
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
+          <div className="flex flex-col items-center md:items-start">
             <img
               src="/icons/mastercard.svg"
               alt="Mastercard"
-              className="w-auto h-12"
+              className="w-auto h-10 md:h-12"
             />
-            <p>Mastercard Partner</p>
+            <p className="text-sm text-center md:text-left">
+              Mastercard Partner
+            </p>
           </div>
           <div>
-            <p className="text-sm text-purple-primary">
+            <p className="text-sm text-center text-purple-primary md:text-right">
               Gapstack {new Date().getFullYear()}. All Rights Reserved
             </p>
           </div>

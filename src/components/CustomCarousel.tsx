@@ -47,17 +47,19 @@ export function CustomCarousel({ slides, className }: CustomCarouselProps) {
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
-              <div className="grid grid-cols-1 md:grid-cols-12">
-                <div className="md:col-span-7 min-h-[236px]">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-0">
+                <div className="md:col-span-7 min-h-[200px] md:min-h-[236px]">
                   <img
                     src={slide.image}
                     alt={`${slide.title} screenshot`}
-                    className="object-cover w-full h-full rounded-tr-lg"
+                    className="object-cover w-full h-full rounded-lg md:rounded-tr-lg md:rounded-bl-none md:rounded-tl-none md:rounded-br-none"
                   />
                 </div>
-                <div className="flex flex-col justify-center md:col-span-5 md:pr-6">
-                  <h2 className="mb-4 text-2xl font-bold">{slide.title}</h2>
-                  <ul className="pl-5 space-y-1 list-disc">
+                <div className="flex flex-col justify-center px-4 pb-12 md:col-span-5 md:px-0 md:pr-6 md:pb-0">
+                  <h2 className="mb-3 text-lg font-bold md:text-2xl md:mb-4">
+                    {slide.title}
+                  </h2>
+                  <ul className="pl-4 space-y-1 text-sm list-disc md:pl-5 md:text-base">
                     {slide.bullets.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}
@@ -69,7 +71,7 @@ export function CustomCarousel({ slides, className }: CustomCarouselProps) {
         </CarouselContent>
       </Carousel>
       <div
-        className="absolute right-[38%] flex items-center gap-1 bottom-5 bg-background"
+        className="absolute left-1/2 transform -translate-x-1/2 md:right-[34.7%] md:left-auto md:transform-none flex items-center gap-1 bottom-3 md:bottom-2 bg-background px-2 py-1 rounded-full"
         role="tablist"
         aria-label="Carousel indicators"
       >
@@ -80,7 +82,7 @@ export function CustomCarousel({ slides, className }: CustomCarouselProps) {
               key={dotIndex}
               onClick={() => api?.scrollTo(dotIndex)}
               className={`h-2 rounded-full transition-all duration-300 bg-purple-primary ${
-                active ? " w-6" : "w-2"
+                active ? "w-4 md:w-6" : "w-2"
               }`}
               aria-label={`Go to slide ${dotIndex + 1}`}
               aria-selected={active}
