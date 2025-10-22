@@ -136,9 +136,8 @@ export function ContactSalesSheet({
             <CustomSlide>
               <h2 className="mb-4 text-2xl font-bold">Partner with Gapstack</h2>
               <p className="mb-8 text-muted-foreground">
-                Supply chain financing is made simple by the Gapstack platform
-                which uniquely gives access to finance at all points in the
-                chain.
+                Digital Infrastructure that connects people and markets enabling
+                seamless flow of value.
               </p>
               <div className="inline-block">
                 <Button

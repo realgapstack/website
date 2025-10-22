@@ -185,7 +185,10 @@ const GlobalPayments = () => {
             <h2 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl md:mb-8">
               Let's Explore What Is Possible ....
             </h2>
-            <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[#7c60ff29] shadow-[0px_0px_7px_#7c60ffe6] bg-gradient-to-r from-[#7c60ffe6] to-[#7c60ffcc] text-sm">
+            <button
+              className="px-6 sm:px-8 py-3 sm:py-4 rounded-full border border-[#7c60ff29] shadow-[0px_0px_7px_#7c60ffe6] bg-gradient-to-r from-[#7c60ffe6] to-[#7c60ffcc] text-sm cursor-pointer"
+              onClick={openSheet}
+            >
               <span className="font-medium text-white">
                 Unlock Your Potential
               </span>
