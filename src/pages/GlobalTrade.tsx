@@ -1,4 +1,6 @@
+import { ContactSalesSheet } from "@/components/ContactSalesSheet";
 import Section from "@/components/Section";
+import { useContactSales } from "@/hooks/useContactSales";
 import Button from "../components/Button";
 
 // Reusable feature item component
@@ -22,7 +24,8 @@ const FeatureItem = ({ title, icon, bg, description }: Feature) => (
 );
 
 const GlobalTrade = () => {
-  // Feature definitions
+  const { openSheet, isOpen, closeSheet } = useContactSales();
+
   const features: Feature[] = [
     {
       title: "Onboarding For Finance",
@@ -55,7 +58,7 @@ const GlobalTrade = () => {
   ];
 
   return (
-    <div>
+    <>
       <Section className="px-4 pt-10 text-center pb-7">
         <h1 className="mb-4 text-2xl font-bold leading-tight md:text-5xl lg:text-5xl md:mb-6 text-balance">
           The single Digital Trade Financing Platform
@@ -66,7 +69,7 @@ const GlobalTrade = () => {
           while expanding your unique business relationships.
         </p>
         <div className="flex flex-col justify-center gap-4 px-4 sm:flex-row sm:gap-6">
-          <Button>Contact Sales</Button>
+          <Button onClick={openSheet}>Contact Sales</Button>
         </div>
       </Section>
 
@@ -192,7 +195,7 @@ const GlobalTrade = () => {
           <h2 className="text-2xl font-bold md:text-4xl">
             Explore The Gapstack Advantage Now
           </h2>
-          <Button size="lg" className="mt-6">
+          <Button size="lg" className="mt-6" onClick={openSheet}>
             Unlock Your Potential
           </Button>
         </div>
@@ -259,7 +262,8 @@ const GlobalTrade = () => {
           </div>
         </div>
       </Section>
-    </div>
+      <ContactSalesSheet open={isOpen} onOpenChange={closeSheet} />
+    </>
   );
 };
 
