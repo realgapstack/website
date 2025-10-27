@@ -59,7 +59,10 @@ const GlobalTrade = () => {
 
   return (
     <>
-      <Section className="px-4 pt-10 text-center pb-7">
+      <Section
+        className="px-4 pt-10 text-center border-b-0 pb-7"
+        wrapperClassName="border-b-0"
+      >
         <h1 className="mb-4 text-2xl font-bold leading-tight md:text-5xl lg:text-5xl md:mb-6 text-balance">
           The single Digital Trade Financing Platform
         </h1>
@@ -98,18 +101,25 @@ const GlobalTrade = () => {
         </div>
       </div>
 
-      <Section className="relative pt-6 md:pt-10 bg-background">
-        <div className="relative px-4 mx-auto w-fit">
-          <img
-            src="/images/bid_bonds.png"
-            alt="Placeholder"
-            className="h-64 md:h-[27rem] w-auto max-w-full"
-          />
-          {/* Gradient overlay on top of image (right fade) */}
-          <div className="pointer-events-none absolute right-0 left-0 bg-gradient-to-r from-[rgba(244,248,249,0)] to-[rgba(244,248,249,1)] h-8 md:h-14 bottom-0" />
-        </div>
-      </Section>
+      <div className="relative ">
+        <div className="absolute z-10 w-full h-px border-t border-dotted border-grey top-5" />
 
+        <Section
+          className="relative pt-6 md:pt-10 bg-background rounded-2xl"
+          wrapperClassName="border-0!"
+        >
+          <div className="relative px-4 mx-auto w-fit">
+            <img
+              src="/images/bid_bonds.png"
+              alt="Placeholder"
+              className="h-64 md:h-[27rem] w-auto max-w-full"
+            />
+            {/* Gradient overlay on top of image (right fade) */}
+            <div className="pointer-events-none absolute right-0 left-0 bg-gradient-to-r from-[rgba(244,248,249,0)] to-[rgba(244,248,249,1)] h-8 md:h-14 bottom-0" />
+          </div>
+        </Section>
+        <div className="absolute z-10 w-full h-px border-t border-dotted border-grey bottom-5" />
+      </div>
       <div className="relative w-full h-px border-t border-dotted border-grey">
         <div className="absolute left-1/2 top-0 w-full max-w-[979px] -translate-x-1/2">
           <div className="absolute left-0 top-0 w-3 h-3 -translate-x-1.5 -translate-y-1.5">
